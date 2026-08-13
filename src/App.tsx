@@ -1,9 +1,10 @@
 import { AppLayout } from './components/layout/AppLayout'
+import { TransactionsPage } from './features/transactions/TransactionsPage'
 
 function App() {
   return (
     <AppLayout>
-      <p className="text-surface-600">Контент будет здесь</p>
+      <TransactionsPage />
     </AppLayout>
   )
 }
