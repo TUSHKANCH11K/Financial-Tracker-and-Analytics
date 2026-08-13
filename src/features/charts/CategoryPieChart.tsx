@@ -1,6 +1,5 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
-
-const COLORS = ['#2f7059', '#3d8b6e', '#8ec4ad', '#d4bf91', '#b54a4a', '#495057']
+import { getCategoryColor } from '../../lib/categoryColors'
 
 type CategoryPieChartProps = {
   data: Array<{
@@ -30,7 +29,7 @@ export function CategoryPieChart({ data }: CategoryPieChartProps) {
             <PieChart>
               <Pie data={data} dataKey="value" nameKey="name" innerRadius={50} outerRadius={82} paddingAngle={2}>
                 {data.map((entry, index) => (
-                  <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+                  <Cell key={entry.name} fill={getCategoryColor(entry.name, index)} />
                 ))}
               </Pie>
               <Tooltip formatter={(value: number) => [`${value} ₽`, 'Сумма']} />
@@ -44,7 +43,7 @@ export function CategoryPieChart({ data }: CategoryPieChartProps) {
               <span className="flex items-center gap-2 truncate">
                 <span
                   className="inline-block h-2.5 w-2.5 rounded-full"
-                  style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                  style={{ backgroundColor: getCategoryColor(entry.name, index) }}
                 />
                 <span className="truncate">{entry.name}</span>
               </span>
