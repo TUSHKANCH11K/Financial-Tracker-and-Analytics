@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { BalanceSummary } from '../summary/BalanceSummary'
 import { useTransactionStore } from '../../store/useTransactionStore'
 import { TransactionFilters, type TransactionFilterState } from './TransactionFilters'
 import { TransactionForm } from './TransactionForm'
@@ -42,6 +43,11 @@ export function TransactionsPage() {
           <h2 className="mt-1 text-2xl font-semibold text-surface-900">Учёт транзакций</h2>
         </div>
       </div>
+
+      <BalanceSummary
+        transactions={transactions}
+        month={filters.month !== 'all' ? filters.month : undefined}
+      />
 
       <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
         <section className="rounded-2xl border border-surface-200 bg-white p-4 shadow-sm">
