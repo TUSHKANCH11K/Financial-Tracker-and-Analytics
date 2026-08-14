@@ -14,6 +14,8 @@ const defaultFilters: TransactionFilterState = {
 
 export function TransactionsPage() {
   const transactions = useTransactionStore((state) => state.transactions)
+  const syncError = useTransactionStore((state) => state.syncError)
+  const clearSyncError = useTransactionStore((state) => state.clearSyncError)
   const [filters, setFilters] = useState<TransactionFilterState>(defaultFilters)
 
   const visibleTransactions = useMemo(() => {
@@ -49,6 +51,19 @@ export function TransactionsPage() {
         transactions={transactions}
         month={filters.month !== 'all' ? filters.month : undefined}
       />
+
+      {syncError ? (
+        <div className="flex items-start justify-between gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <p>{syncError}</p>
+          <button
+            type="button"
+            onClick={clearSyncError}
+            className="shrink-0 rounded-md border border-amber-300 bg-white px-2.5 py-1 text-xs font-medium text-amber-900 transition hover:bg-amber-100"
+          >
+            Скрыть
+          </button>
+        </div>
+      ) : null}
 
       <ImportExportPanel />
 
