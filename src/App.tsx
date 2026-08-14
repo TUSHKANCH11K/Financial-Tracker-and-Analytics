@@ -5,11 +5,13 @@ import { AnalyticsPage } from './features/charts/AnalyticsPage'
 import { TransactionsPage } from './features/transactions/TransactionsPage'
 import { supabase } from './lib/supabaseClient'
 import { useAuthStore } from './store/useAuthStore'
+import { useTransactionStore } from './store/useTransactionStore'
 
 function App() {
   const [activeTab, setActiveTab] = useState<'transactions' | 'analytics'>('transactions')
   const [isAuthBootstrapping, setIsAuthBootstrapping] = useState(true)
   const user = useAuthStore((state) => state.user)
+  const loadUserTransactions = useTransactionStore((state) => state.loadUserTransactions)
 
   useEffect(() => {
     let isMounted = true
@@ -44,6 +46,14 @@ function App() {
       subscription.unsubscribe()
     }
   }, [])
+
+  useEffect(() => {
+    if (!user) {
+      return
+    }
+
+    void loadUserTransactions()
+  }, [loadUserTransactions, user])
 
   if (isAuthBootstrapping) {
     return (
