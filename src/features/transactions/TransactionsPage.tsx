@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { ImportExportPanel } from '../settings/ImportExportPanel'
 import { BalanceSummary } from '../summary/BalanceSummary'
 import { useTransactionStore } from '../../store/useTransactionStore'
 import { TransactionFilters, type TransactionFilterState } from './TransactionFilters'
@@ -48,6 +49,8 @@ export function TransactionsPage() {
         transactions={transactions}
         month={filters.month !== 'all' ? filters.month : undefined}
       />
+
+      <ImportExportPanel />
 
       <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
         <section className="rounded-2xl border border-surface-200 bg-white p-4 shadow-sm">

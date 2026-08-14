@@ -1,13 +1,14 @@
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
-import type { Transaction } from '../types/transaction'
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import type { Transaction } from "../types/transaction";
 
 type TransactionStore = {
-  transactions: Transaction[]
-  addTransaction: (transaction: Omit<Transaction, 'id'>) => void
-  deleteTransaction: (id: string) => void
-  updateTransaction: (id: string, updates: Partial<Transaction>) => void
-}
+  transactions: Transaction[];
+  addTransaction: (transaction: Omit<Transaction, "id">) => void;
+  importTransactions: (transactions: Transaction[]) => void;
+  deleteTransaction: (id: string) => void;
+  updateTransaction: (id: string, updates: Partial<Transaction>) => void;
+};
 
 export const useTransactionStore = create<TransactionStore>()(
   persist(
@@ -20,6 +21,11 @@ export const useTransactionStore = create<TransactionStore>()(
             ...state.transactions,
             { ...transaction, id: crypto.randomUUID() },
           ],
+        })),
+
+      importTransactions: (transactions) =>
+        set((state) => ({
+          transactions: [...state.transactions, ...transactions],
         })),
 
       deleteTransaction: (id) =>
@@ -35,7 +41,7 @@ export const useTransactionStore = create<TransactionStore>()(
         })),
     }),
     {
-      name: 'finance-tracker-storage',
+      name: "finance-tracker-storage",
     },
   ),
-)
+);
