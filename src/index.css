@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #f0f7f4;
+  --color-primary-100: #dceee5;
+  --color-primary-200: #b8dccc;
+  --color-primary-300: #8ec4ad;
+  --color-primary-400: #5fa88a;
+  --color-primary-500: #3d8b6e;
+  --color-primary-600: #2f7059;
+  --color-primary-700: #275a48;
+  --color-primary-800: #21483b;
+  --color-primary-900: #1c3c32;
+
+  --color-surface-50: #f8f9fa;
+  --color-surface-100: #f1f3f5;
+  --color-surface-200: #e9ecef;
+  --color-surface-300: #dee2e6;
+  --color-surface-400: #ced4da;
+  --color-surface-500: #adb5bd;
+  --color-surface-600: #868e96;
+  --color-surface-700: #495057;
+  --color-surface-800: #343a40;
+  --color-surface-900: #212529;
+
+  --color-accent-50: #faf8f3;
+  --color-accent-100: #f3ede0;
+  --color-accent-200: #e6d9bc;
+  --color-accent-300: #d4bf91;
+  --color-accent-400: #c4a66e;
+  --color-accent-500: #b08d4f;
+  --color-accent-600: #947540;
+  --color-accent-700: #785e36;
+  --color-accent-800: #634d30;
+  --color-accent-900: #534028;
+
+  --color-success: #2f7059;
+  --color-danger: #b54a4a;
+  --color-warning: #b08d4f;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-surface-50 text-surface-800 font-sans antialiased;
+  }
+}
